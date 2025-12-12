@@ -1,0 +1,154 @@
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* NAVBAR */
+.navbar {
+    width: 100%;
+    height: 75px;
+    background-color: #2E442B; 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 70px;
+    position: fixed;
+    top: 0;
+    z-index: 10;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 90px;
+}
+
+.nav-links a {
+    color: white;
+    font-family: Georgia, serif;
+    font-size: 26px;
+    text-decoration: none;
+}
+
+/* HAMBURGER ICON */
+.hamburger {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    cursor: pointer;
+}
+
+.hamburger span {
+    width: 32px;
+    height: 4px;
+    background: white;
+}
+
+/* HERO FOR HOMEPAGE */
+.hero {
+    width: 100%;
+    height: 100vh;
+    background-image: url("fih.jpg"); /* YOUR IMAGE */
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: flex-end;
+    padding-left: 40px;
+    padding-bottom: 150px;
+}
+
+/* HOMEPAGE TEXT */
+.intro {
+    font-family: Georgia, serif;
+    color: white;
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.title {
+    font-family: Impact, sans-serif;
+    font-size: 100px;
+    letter-spacing: 2px;
+    line-height: 0.85;
+    font-weight: 900;
+    color: white;
+    margin-bottom: 15px;
+}
+
+.subtitle {
+    font-family: Georgia, serif;
+    font-size: 32px;
+    color: white;
+}
+
+/* PAGE HEADER (portfolio + about) */
+.page-header {
+    padding-top: 150px;
+    text-align: center;
+    color: #2E442B;
+    font-family: Georgia, serif;
+}
+
+.page-header h1 {
+    font-size: 70px;
+}
+
+.page-header p {
+    font-size: 22px;
+    color: #444;
+    margin-top: 10px;
+}
+
+/* PORTFOLIO GRID */
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 40px;
+    padding: 60px;
+}
+
+.portfolio-item {
+    text-align: center;
+}
+
+.portfolio-item img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+.portfolio-item h3 {
+    margin-top: 15px;
+    font-family: Georgia, serif;
+    font-size: 20px;
+}
+
+/* ABOUT PAGE */
+.about-container {
+    display: flex;
+    justify-content: center;
+    padding: 160px 20px 60px;
+}
+
+.about-card {
+    max-width: 800px;
+    background: #f8f8f8;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.15);
+}
+
+.about-card h1 {
+    font-family: Georgia, serif;
+    font-size: 60px;
+    color: #2E442B;
+    margin-bottom: 25px;
+}
+
+.about-card p {
+    font-family: Georgia, serif;
+    font-size: 20px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
