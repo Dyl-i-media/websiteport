@@ -1,32 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dylan Chappell – Portfolio</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Dylan Chappell — Home</title>
+
+  <!-- updated preload -->
+  <link rel="preload" as="image" href="fih.jpg">
+
+  <!-- Google fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-    <nav class="navbar">
-        <ul class="nav-links">
-            <li><a href="index.html">HOME</a></li>
-            <li><a href="portfolio.html">PORTFOLIO</a></li>
-            <li><a href="about.html">ABOUT</a></li>
-        </ul>
+  <!-- NAVIGATION -->
+  <nav class="navbar" role="navigation" aria-label="main navigation">
+    <ul class="nav-links" id="desktopNav">
+      <li><a href="index.html">HOME</a></li>
+      <li><a href="portfolio.html">PORTFOLIO</a></li>
+      <li><a href="about.html">ABOUT</a></li>
+    </ul>
 
-        <div class="hamburger">
-            <span></span><span></span><span></span>
-        </div>
-    </nav>
+    <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
 
-    <section class="hero">
-        <div class="text-block">
-            <p class="intro">WELCOME TO</p>
-            <h1 class="title">DYLAN<br>CHAPPELL'S</h1>
-            <p class="subtitle">DIGITAL PORTFOLIO</p>
-        </div>
-    </section>
+  <!-- MOBILE NAV -->
+  <div class="mobile-nav" id="mobileNav" aria-hidden="true">
+    <ul>
+      <li><a href="index.html">HOME</a></li>
+      <li><a href="portfolio.html">PORTFOLIO</a></li>
+      <li><a href="about.html">ABOUT</a></li>
+    </ul>
+  </div>
+
+  <!-- UPDATED HEADER BANNER -->
+  <section class="header-banner" style="background-image: url('fih.jpg');">
+    <div class="text-block">
+      <p class="intro animate">WELCOME TO</p>
+      <h1 class="title animate">DYLAN<br>CHAPPELL'S</h1>
+      <p class="subtitle animate">DIGITAL PORTFOLIO</p>
+    </div>
+  </section>
+
+  <!-- SCRIPTS -->
+  <script>
+  (function(){
+    const ham = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobileNav');
+
+    ham.addEventListener('click', () => {
+      const open = ham.getAttribute('aria-expanded') === 'true';
+      ham.setAttribute('aria-expanded', String(!open));
+      if(!open){
+        mobileNav.style.display = 'flex';
+        mobileNav.setAttribute('aria-hidden', 'false');
+      } else {
+        mobileNav.style.display = 'none';
+        mobileNav.setAttribute('aria-hidden', 'true');
+      }
+    });
+
+    mobileNav.addEventListener('click', (e) => {
+      if(e.target.tagName === 'A'){
+        mobileNav.style.display = 'none';
+        mobileNav.setAttribute('aria-hidden','true');
+        ham.setAttribute('aria-expanded','false');
+      }
+    });
+  })();
+
+  (function(){
+    const path = window.location.pathname.split('/').pop() || 'index.html';
+    document.querySelectorAll('.nav-links a, .mobile-nav a').forEach(a=>{
+      if(a.getAttribute('href') === path) a.classList.add('active');
+    });
+  })();
+
+  (function(){
+    const io = new IntersectionObserver((entries, obs)=>{
+      entries.forEach(ent=>{
+        if(ent.isIntersecting){
+          ent.target.classList.add('in-view');
+          obs.unobserve(ent.target);
+        }
+      });
+    }, {threshold: 0.12});
+
+    document.querySelectorAll('.animate, .about-card, .portfolio-item img, .portfolio-item h3').forEach(el=>{
+      io.observe(el);
+    });
+  })();
+  </script>
 
 </body>
 </html>
