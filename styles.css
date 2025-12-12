@@ -1,154 +1,269 @@
-/* RESET */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+/* ====== RESET ====== */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html,body { height: 100%; }
+
+/* ====== VARIABLES ====== */
+:root{
+  --green:#2E442B;
+  --muted:#f6f6f6;
+  --text:#111;
+  --white:#fff;
+  --nav-height:76px;
 }
 
-/* NAVBAR */
-.navbar {
-    width: 100%;
-    height: 75px;
-    background-color: #2E442B; 
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 70px;
-    position: fixed;
-    top: 0;
-    z-index: 10;
+/* ====== GLOBAL ====== */
+body{
+  font-family: "Playfair Display", Georgia, serif;
+  color:var(--text);
+  background:var(--muted);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  line-height:1.45;
 }
 
-.nav-links {
-    list-style: none;
-    display: flex;
-    gap: 90px;
+/* ====== NAVBAR ====== */
+.navbar{
+  position:fixed;
+  top:0; left:0;
+  width:100%;
+  height:var(--nav-height);
+  background:var(--green);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 48px;
+  z-index:60;
+  box-shadow:0 2px 6px rgba(0,0,0,0.08);
 }
 
-.nav-links a {
-    color: white;
-    font-family: Georgia, serif;
-    font-size: 26px;
-    text-decoration: none;
+.nav-links{
+  list-style:none;
+  display:flex;
+  gap:64px;
+  align-items:center;
 }
 
-/* HAMBURGER ICON */
-.hamburger {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    cursor: pointer;
+.nav-links a{
+  color:var(--white);
+  text-decoration:none;
+  font-size:20px;
+  letter-spacing:1px;
+  font-weight:500;
+  transition:opacity .18s ease, transform .18s ease;
 }
 
-.hamburger span {
-    width: 32px;
-    height: 4px;
-    background: white;
+.nav-links a:hover{ opacity:.9; transform:translateY(-1px); }
+
+.nav-links a.active{
+  text-decoration:underline;
+  text-underline-offset:6px;
+  font-weight:700;
 }
 
-/* HERO FOR HOMEPAGE */
-.hero {
-    width: 100%;
-    height: 100vh;
-    background-image: url("fih.jpg"); /* YOUR IMAGE */
-    background-size: cover;
-    background-position: center;
-    display: flex;
-    align-items: flex-end;
-    padding-left: 40px;
-    padding-bottom: 150px;
+/* HAMBURGER */
+.hamburger{
+  display:none;
+  flex-direction:column;
+  gap:6px;
+  cursor:pointer;
+  padding:10px;
 }
 
-/* HOMEPAGE TEXT */
-.intro {
-    font-family: Georgia, serif;
-    color: white;
-    font-size: 30px;
-    margin-bottom: 10px;
+.hamburger span{
+  width:34px;
+  height:4px;
+  background:var(--white);
+  display:block;
+  border-radius:2px;
 }
 
-.title {
-    font-family: Impact, sans-serif;
-    font-size: 100px;
-    letter-spacing: 2px;
-    line-height: 0.85;
-    font-weight: 900;
-    color: white;
-    margin-bottom: 15px;
+/* MOBILE NAV */
+.mobile-nav {
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(10,10,10,0.85);
+  z-index:70;
+  align-items:center;
+  justify-content:center;
 }
 
-.subtitle {
-    font-family: Georgia, serif;
-    font-size: 32px;
-    color: white;
+.mobile-nav ul{
+  list-style:none;
+  text-align:center;
 }
 
-/* PAGE HEADER (portfolio + about) */
-.page-header {
-    padding-top: 150px;
-    text-align: center;
-    color: #2E442B;
-    font-family: Georgia, serif;
+.mobile-nav a{
+  display:block;
+  color:var(--white);
+  font-size:28px;
+  text-decoration:none;
+  margin:18px 0;
 }
 
-.page-header h1 {
-    font-size: 70px;
+/* ====== HEADER BANNER ====== */
+.header-banner {
+  width:100%;
+  height:100vh;
+  position:relative;
+  display:flex;
+  align-items:flex-end;
+  padding-left:48px;
+  padding-bottom:150px;
+  background-color:#08110a; 
+  background-position:center;
+  background-size:cover;
+  background-repeat:no-repeat;
 }
 
-.page-header p {
-    font-size: 22px;
-    color: #444;
-    margin-top: 10px;
+.header-banner::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background: linear-gradient(0deg, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.18) 35%, rgba(0,0,0,0) 60%);
+  z-index:1;
 }
 
-/* PORTFOLIO GRID */
-.portfolio-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 40px;
-    padding: 60px;
+/* ====== HERO TEXT (now inside header-banner) ====== */
+.text-block{
+  position:relative;
+  z-index:2;
+  color:var(--white);
+  max-width:660px;
 }
 
-.portfolio-item {
-    text-align: center;
+/* small intro */
+.intro{
+  font-size:26px;
+  margin-bottom:10px;
+  font-family:"Playfair Display", Georgia, serif;
+  opacity:0;
+  transform: translateY(8px);
 }
 
-.portfolio-item img {
-    width: 100%;
-    border-radius: 8px;
+/* big name */
+.title{
+  font-family: "Anton", "Impact", sans-serif;
+  font-size:96px;
+  line-height:0.86;
+  letter-spacing:2px;
+  margin-bottom:14px;
+  opacity:0;
+  transform: translateY(10px);
 }
 
-.portfolio-item h3 {
-    margin-top: 15px;
-    font-family: Georgia, serif;
-    font-size: 20px;
+/* subtitle */
+.subtitle{
+  font-size:28px;
+  font-family:"Playfair Display", Georgia, serif;
+  opacity:0;
+  transform: translateY(8px);
 }
 
-/* ABOUT PAGE */
-.about-container {
-    display: flex;
-    justify-content: center;
-    padding: 160px 20px 60px;
+/* ====== PAGE HEADER (portfolio/about) ====== */
+.page-header{
+  padding-top: calc(var(--nav-height) + 110px);
+  text-align:center;
 }
 
-.about-card {
-    max-width: 800px;
-    background: #f8f8f8;
-    padding: 40px;
-    border-radius: 12px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.15);
+.page-header h1{
+  font-size:64px;
+  color:var(--green);
+  margin-bottom:8px;
+  font-weight:700;
+  opacity:0;
+  transform:translateY(10px);
 }
 
-.about-card h1 {
-    font-family: Georgia, serif;
-    font-size: 60px;
-    color: #2E442B;
-    margin-bottom: 25px;
+.page-header p{
+  font-size:20px;
+  color:#444;
+  opacity:0;
+  transform:translateY(8px);
 }
 
-.about-card p {
-    font-family: Georgia, serif;
-    font-size: 20px;
-    line-height: 1.6;
-    margin-bottom: 20px;
+/* ====== PORTFOLIO GRID ====== */
+.portfolio-grid{
+  padding:48px;
+  display:grid;
+  gap:36px;
+  grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
 }
+
+.portfolio-item img{
+  width:100%;
+  height:auto;
+  border-radius:8px;
+  display:block;
+  box-shadow:0 6px 20px rgba(0,0,0,0.08);
+  transition:transform .28s ease, box-shadow .28s ease;
+}
+
+.portfolio-item img:hover{
+  transform:translateY(-6px) scale(1.01);
+  box-shadow:0 12px 28px rgba(0,0,0,0.12);
+}
+
+.portfolio-item h3{
+  margin-top:12px;
+  font-family:"Playfair Display", Georgia, serif;
+  font-size:18px;
+}
+
+/* ====== ABOUT PAGE ====== */
+.about-container{
+  display:flex;
+  justify-content:center;
+  padding:120px 20px;
+}
+
+.about-card{
+  max-width:900px;
+  background:var(--white);
+  padding:40px;
+  border-radius:12px;
+  box-shadow:0 8px 30px rgba(0,0,0,0.06);
+  opacity:0;
+  transform:translateY(12px);
+}
+
+.about-card h1{
+  font-size:46px;
+  color:var(--green);
+  margin-bottom:18px;
+}
+
+.about-card p{ font-size:18px; line-height:1.9; color:#333; }
+
+/* ====== ANIMATIONS ====== */
+.animate {
+  will-change: opacity, transform;
+  transition: opacity .6s cubic-bezier(.2,.9,.2,1), transform .6s cubic-bezier(.2,.9,.2,1);
+}
+
+.in-view {
+  opacity:1 !important;
+  transform:none !important;
+}
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 900px){
+  .nav-links { gap:28px; display:none; }
+  .hamburger { display:flex; }
+  .header-banner { padding-left:28px; padding-bottom:120px; }
+  .title { font-size:64px; }
+}
+
+@media (max-width: 560px){
+  .header-banner { padding-left:18px; padding-bottom:90px; }
+  .title { font-size:44px; }
+  .intro { font-size:18px; }
+  .subtitle { font-size:18px; }
+  .navbar { padding:0 20px; }
+  .about-card { padding:28px; }
+  .page-header h1 { font-size:44px; }
+}
+
+/* small polish */
+a { -webkit-tap-highlight-color: rgba(0,0,0,0); }
