@@ -1,52 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio – Dylan Chappell</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Dylan Chappell — Portfolio</title>
+
+  <!-- preload a thumbnail (optional) -->
+  <link rel="preload" as="image" href="thumb1.jpg">
+
+  <!-- fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-    <nav class="navbar">
-        <ul class="nav-links">
-            <li><a href="index.html">HOME</a></li>
-            <li><a href="portfolio.html">PORTFOLIO</a></li>
-            <li><a href="about.html">ABOUT</a></li>
-        </ul>
-        <div class="hamburger">
-            <span></span><span></span><span></span>
-        </div>
-    </nav>
+  <nav class="navbar" role="navigation" aria-label="main navigation">
+    <ul class="nav-links">
+      <li><a href="index.html">HOME</a></li>
+      <li><a href="portfolio.html">PORTFOLIO</a></li>
+      <li><a href="about.html">ABOUT</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger2" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
 
-    <header class="page-header">
-        <h1>PORTFOLIO</h1>
-        <p>A selection of my design and creative work.</p>
-    </header>
+  <div class="mobile-nav" id="mobileNav2" aria-hidden="true">
+    <ul>
+      <li><a href="index.html">HOME</a></li>
+      <li><a href="portfolio.html">PORTFOLIO</a></li>
+      <li><a href="about.html">ABOUT</a></li>
+    </ul>
+  </div>
 
-    <section class="portfolio-grid">
+  <header class="page-header">
+    <h1 class="animate">PORTFOLIO</h1>
+    <p class="animate">A selection of design & digital work.</p>
+  </header>
 
-        <div class="portfolio-item">
-            <img src="https://via.placeholder.com/500x300" alt="Project 1">
-            <h3>Project Title 1</h3>
-        </div>
+  <section class="portfolio-grid">
+    <div class="portfolio-item animate">
+      <img src="https://via.placeholder.com/800x520" alt="Project 1">
+      <h3>Project Title 1</h3>
+    </div>
 
-        <div class="portfolio-item">
-            <img src="https://via.placeholder.com/500x300" alt="Project 2">
-            <h3>Project Title 2</h3>
-        </div>
+    <div class="portfolio-item animate">
+      <img src="https://via.placeholder.com/800x520" alt="Project 2">
+      <h3>Project Title 2</h3>
+    </div>
 
-        <div class="portfolio-item">
-            <img src="https://via.placeholder.com/500x300" alt="Project 3">
-            <h3>Project Title 3</h3>
-        </div>
+    <div class="portfolio-item animate">
+      <img src="https://via.placeholder.com/800x520" alt="Project 3">
+      <h3>Project Title 3</h3>
+    </div>
 
-        <div class="portfolio-item">
-            <img src="https://via.placeholder.com/500x300" alt="Project 4">
-            <h3>Project Title 4</h3>
-        </div>
+    <div class="portfolio-item animate">
+      <img src="https://via.placeholder.com/800x520" alt="Project 4">
+      <h3>Project Title 4</h3>
+    </div>
+  </section>
 
-    </section>
+  <script>
+  // Mobile menu toggle (same behavior as index)
+  (function(){
+    const ham = document.getElementById('hamburger2');
+    const mobileNav = document.getElementById('mobileNav2');
+
+    ham.addEventListener('click', () => {
+      const open = ham.getAttribute('aria-expanded') === 'true';
+      ham.setAttribute('aria-expanded', String(!open));
+      mobileNav.style.display = open ? 'none' : 'flex';
+      mobileNav.setAttribute('aria-hidden', String(open));
+    });
+
+    mobileNav.addEventListener('click', (e) => {
+      if(e.target.tagName === 'A'){
+        mobileNav.style.display = 'none';
+        mobileNav.setAttribute('aria-hidden','true');
+        ham.setAttribute('aria-expanded','false');
+      }
+    });
+
+    // active nav
+    const path = window.location.pathname.split('/').pop() || 'index.html';
+    document.querySelectorAll('.nav-links a').forEach(a=>{
+      if(a.getAttribute('href') === path) a.classList.add('active');
+    });
+    document.querySelectorAll('.mobile-nav a').forEach(a=>{
+      if(a.getAttribute('href') === path) a.classList.add('active');
+    });
+
+    // IntersectionObserver for reveal
+    const io = new IntersectionObserver((entries, obs)=>{
+      entries.forEach(ent=>{
+        if(ent.isIntersecting){
+          ent.target.classList.add('in-view');
+          obs.unobserve(ent.target);
+        }
+      });
+    }, {threshold:0.12});
+    document.querySelectorAll('.animate').forEach(el=>io.observe(el));
+  })();
+  </script>
 
 </body>
 </html>
