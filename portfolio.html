@@ -5,27 +5,25 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Dylan Chappell — Portfolio</title>
 
-  <!-- preload a thumbnail (optional) -->
   <link rel="preload" as="image" href="thumb1.jpg">
 
-  <!-- fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-  <nav class="navbar" role="navigation" aria-label="main navigation">
+  <nav class="navbar">
     <ul class="nav-links">
       <li><a href="index.html">HOME</a></li>
       <li><a href="portfolio.html">PORTFOLIO</a></li>
       <li><a href="about.html">ABOUT</a></li>
     </ul>
-    <button class="hamburger" id="hamburger2" aria-label="Open menu" aria-expanded="false">
+    <button class="hamburger" id="hamburger2" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
   </nav>
 
-  <div class="mobile-nav" id="mobileNav2" aria-hidden="true">
+  <div class="mobile-nav" id="mobileNav2">
     <ul>
       <li><a href="index.html">HOME</a></li>
       <li><a href="portfolio.html">PORTFOLIO</a></li>
@@ -40,57 +38,44 @@
 
   <section class="portfolio-grid">
     <div class="portfolio-item animate">
-      <img src="https://via.placeholder.com/800x520" alt="Project 1">
-      <h3>Project Title 1</h3>
+      <img src="Untitled.png" alt="">
+      <h3>Radial Project</h3>
     </div>
 
     <div class="portfolio-item animate">
-      <img src="https://via.placeholder.com/800x520" alt="Project 2">
-      <h3>Project Title 2</h3>
+      <img src="2.png" alt="">
+      <h3>Rythm Project</h3>
     </div>
 
     <div class="portfolio-item animate">
-      <img src="https://via.placeholder.com/800x520" alt="Project 3">
-      <h3>Project Title 3</h3>
-    </div>
-
-    <div class="portfolio-item animate">
-      <img src="https://via.placeholder.com/800x520" alt="Project 4">
-      <h3>Project Title 4</h3>
+      <img src="SPACE.png" alt="">
+      <h3>Pattern Project</h3>
     </div>
   </section>
 
   <script>
-  // Mobile menu toggle (same behavior as index)
   (function(){
     const ham = document.getElementById('hamburger2');
     const mobileNav = document.getElementById('mobileNav2');
 
     ham.addEventListener('click', () => {
       const open = ham.getAttribute('aria-expanded') === 'true';
-      ham.setAttribute('aria-expanded', String(!open));
+      ham.setAttribute('aria-expanded', !open);
       mobileNav.style.display = open ? 'none' : 'flex';
-      mobileNav.setAttribute('aria-hidden', String(open));
     });
 
-    mobileNav.addEventListener('click', (e) => {
+    mobileNav.addEventListener('click', e=>{
       if(e.target.tagName === 'A'){
-        mobileNav.style.display = 'none';
-        mobileNav.setAttribute('aria-hidden','true');
+        mobileNav.style.display='none';
         ham.setAttribute('aria-expanded','false');
       }
     });
 
-    // active nav
     const path = window.location.pathname.split('/').pop() || 'index.html';
-    document.querySelectorAll('.nav-links a').forEach(a=>{
-      if(a.getAttribute('href') === path) a.classList.add('active');
-    });
-    document.querySelectorAll('.mobile-nav a').forEach(a=>{
+    document.querySelectorAll('.nav-links a, .mobile-nav a').forEach(a=>{
       if(a.getAttribute('href') === path) a.classList.add('active');
     });
 
-    // IntersectionObserver for reveal
     const io = new IntersectionObserver((entries, obs)=>{
       entries.forEach(ent=>{
         if(ent.isIntersecting){
@@ -100,6 +85,7 @@
       });
     }, {threshold:0.12});
     document.querySelectorAll('.animate').forEach(el=>io.observe(el));
+
   })();
   </script>
 
