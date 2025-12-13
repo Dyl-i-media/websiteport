@@ -125,7 +125,7 @@ body{
   z-index:1;
 }
 
-/* ====== HERO TEXT (now inside header-banner) ====== */
+/* ====== header-banner) ====== */
 .text-block{
   position:relative;
   z-index:2;
@@ -161,7 +161,7 @@ body{
   transform: translateY(8px);
 }
 
-/* ====== PAGE HEADER (portfolio/about) ====== */
+/* ====== PAGE HEADER (portflio/about) ====== */
 .page-header{
   padding-top: calc(var(--nav-height) + 110px);
   text-align:center;
@@ -211,7 +211,7 @@ body{
   font-size:18px;
 }
 
-/* ====== ABOUT PAGE ====== */
+/* ====== ABOUT PAGE ===== */
 .about-container{
   display:flex;
   justify-content:center;
@@ -236,7 +236,7 @@ body{
 
 .about-card p{ font-size:18px; line-height:1.9; color:#333; }
 
-/* ====== ANIMATIONS ====== */
+/* ====== ANIMATIONS ==== */
 .animate {
   will-change: opacity, transform;
   transition: opacity .6s cubic-bezier(.2,.9,.2,1), transform .6s cubic-bezier(.2,.9,.2,1);
